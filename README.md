@@ -2,74 +2,81 @@
 
 ## アプリ概要
 
-CodeStepは、学習問題への解答と正誤判定を通して、プログラミング学習を進めるための学習アプリです。  
-ユーザー登録・ログイン後に学習問題へ取り組み、管理画面では学習問題の作成・一覧表示・編集・削除ができます。
+CodeStepは、プログラミング初学者が短いコーディング問題に回答し、正誤判定と解説を通して学べるWebアプリです。学習者の正解・進捗を保存・復元する仕組みや、管理者による問題管理機能を備えています。
+
+**公開状況について：** 下記のProduction URLは旧版（`main`）です。作業ブランチで実装・staging検証した最新の管理者権限制御、本人の進捗保存・復元、学習履歴に関連する問題削除などは、Productionにはまだ反映していません。最新機能の完成・公開実績と混同しないでください。
 
 ## サイトイメージ
 
-![CodeStepの学習画面](./docs/app-learning.png)
+![CodeStepの学習画面（以前の版）](./docs/app-learning.png)
+
+※画像は以前の画面です。最新作業ブランチの画面・動作を示す証跡ではありません。
 
 ## アプリURL
 
-https://codestep-two.vercel.app
+- [公開アプリ（Production・旧版）](https://codestep-two.vercel.app)
+- [最新実装の作業ブランチ](https://github.com/bonbabo108/codestep/tree/codex/admin-rls-portfolio)（最新の非本番版。一般公開用URLではありません）
 
 ## アプリ本体GitHub
 
-https://github.com/bonbabo108/codestep
+- [CodeStepアプリ本体](https://github.com/bonbabo108/codestep)
+- [最新検証・公開準備記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/release-readiness.md)
 
 ## 使用技術
 
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Supabase
-- Vercel
-- GitHub
+- フロントエンド：Next.js（App Router）、React、TypeScript、Tailwind CSS
+- 認証・データベース：Supabase Auth、PostgreSQL、RLS
+- デプロイ：Vercel
+- バージョン管理：Git、GitHub
+- テスト・デバッグ：Chrome DevTools（Consoleの確認）、単体・モック・staging実DB/APIでの検証
+
+※GitHub ActionsによるESLint自動実行は、現時点で実施記録を確認できていないため、実施済みの技術には含めていません。
 
 ## 機能一覧
 
-- ユーザー登録・ログイン機能
-- 学習問題の表示機能
-- 解答入力・正誤判定機能
-- 学習進捗の保存機能
-- 管理画面での問題作成機能
-- 管理画面での問題一覧表示機能
-- 管理画面での問題編集機能
-- 管理画面での問題削除機能
+**最新作業ブランチ・stagingで検証した主な機能（Productionへの反映前）**
+
+- ユーザー登録・ログイン・ログアウト（Supabase Auth）
+- データベースからの学習問題表示、解答入力、正誤判定、解説表示
+- ログインした本人の正解・学習進捗の保存と復元
+- 管理者専用ログイン入口・管理画面、一般ユーザーの管理操作制限
+- 管理者による問題作成・一覧表示・編集・削除（関連する進捗がある問題の削除を含む）
+
+※各機能の検証範囲と未検証項目は、[アプリ本体のテスト記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/test-plan.md)を参照してください。
 
 ## 設計ドキュメント
 
-CodeStepの画面構成とデータベース設計を確認できる資料です。
+- [Week9 要件定義・設計スプレッドシート](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
+- [ワイヤーフレーム](./docs/wireframe.png)
+- [ER図](./docs/er-diagram.png)
 
-| 種類 | 内容 | ファイル |
-| --- | --- | --- |
-| ワイヤーフレーム | ログイン画面、学習画面、管理画面の画面構成 | [wireframe.png](./docs/wireframe.png) |
-| ER図 | profiles、questions、user_progress のテーブル構成 | [er-diagram.png](./docs/er-diagram.png) |
+※設計原本には旧仕様が含まれます。最新の認証・権限・削除方法と完全一致するとは限りません。
 
-## テスト・修正の設計及び実施書
+## テスト・修正の設計及び実施書（Week11）
 
-v0プレビュー内で、学習画面・問題管理画面・回答チェック機能の表示と動作確認を行いました。  
-問題編集機能や回答判定の不具合を確認し、v0上で修正依頼を行ったうえで再確認しました。
+- [Week11 テスト設計＆実施書](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit)
+- [最新作業ブランチのテスト記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/test-plan.md)
 
-## アプリ改善案
+Week11シートにはv0プレビュー段階の確認結果と「未検証」の項目が残っています。別途実施したstaging実DB/API・認証・画面の検証結果を、同じ条件で実施したものと誤認しないよう区別しています。
 
-今後の改善案として、以下を検討しています。
+## アプリ改善案（Week12）
 
-- 管理画面のアクセス制御強化
-- 問題カテゴリの追加
-- 学習進捗の可視化
-- 不正解時のヒント表示の改善
-- ユーザーごとの学習履歴表示
+- [提出済みのWeek12改善案シート](https://docs.google.com/spreadsheets/d/1flOiRudAh9wCJgjQoD1CQQVqrHq9n_bBH-agpPvHmLQ/edit)
+
+今後の改善構想として、AI利用時の情報漏洩・危険操作を学ぶ問題、段階的なヒント、問題・カテゴリ選択、達成率表示、AI作業前の簡易リスク確認チェックリストを挙げています。**これら5件は提案段階で、まだ実装していません。**
 
 ## 生成AIツールの活用用途
 
-- ChatGPT：要件整理、README作成、課題提出内容の整理
-- v0：プロトタイプ作成、画面UIの確認
-- Cline：README修正、ドキュメント整理
-- GitHub Copilot / AI支援ツール：コード修正方針の相談
+- ChatGPT：要件・提出条件の整理、仕様の検討、READMEや課題資料の作成補助
+- v0：初期プロトタイプと画面構成の作成・確認
+- Codex：実装・SQLレビュー、修正案の作成、テスト・安全性検証、既存設計との照合
+- Cline、GitHub Copilot等：過去の開発・ドキュメント作業での補助（実際の使用範囲に基づき必要に応じて見直す）
 
-## 備考
+生成AIの出力をそのまま動作保証とはみなさず、検証内容と未検証項目を分けて記録しています。
 
-このリポジトリは、CodeStepのポートフォリオ提出用リポジトリです。  
-実際のアプリ本体コードは、上記の「アプリ本体GitHub」に格納しています。
+## 備考・今後の課題
+
+- Week12の「DevToolsの確認」は、アプリとDevToolsの画面を含むスクリーンショットをWorX AIへ提出済みです。
+- GitHub Actions（ESLint）の自動実行・実行結果URLは未確認／未掲載です。講座の実践課題に進む場合は、実行後に成果物へのリンクを追加します。
+- Productionへの最新機能反映、本番DB/Auth移行は未実施です。本番DBの権限変更・データ保全には個別の確認が必要です。
+- このリポジトリはポートフォリオ提出用です。アプリ本体のコードは上記の別リポジトリで管理しています。
