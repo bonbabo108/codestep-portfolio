@@ -30,7 +30,7 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 - バージョン管理：Git、GitHub
 - テスト・デバッグ：Chrome DevTools（Consoleの確認）、単体・モック・staging実DB/APIでの検証
 
-※GitHub ActionsによるESLint自動実行は、現時点で実施記録を確認できていないため、実施済みの技術には含めていません。
+- CI：GitHub Actions（ESLint自動実行） — [成功したワークフローの実行履歴](https://github.com/bonbabo108/codestep/actions/runs/39031564825)（作業ブランチ `codex/admin-rls-portfolio`、コミット `d950f3f`）
 
 ## 機能一覧
 
@@ -77,6 +77,6 @@ Week11シートにはv0プレビュー段階の確認結果と「未検証」の
 ## 備考・今後の課題
 
 - Week12の「DevToolsの確認」は、アプリとDevToolsの画面を含むスクリーンショットをWorX AIへ提出済みです。
-- GitHub Actions（ESLint）の自動実行・実行結果URLは未確認／未掲載です。講座の実践課題に進む場合は、実行後に成果物へのリンクを追加します。
+- GitHub Actions（ESLint）は作業ブランチで実行・成功を確認済みです：[実行履歴](https://github.com/bonbabo108/codestep/actions/runs/39031564825)。WorX AIへの課題は、初回の証拠画像不足を修正して再提出済みです（再採点結果は未確認）。
 - Productionへの最新機能反映、本番DB/Auth移行は未実施です。本番DBの権限変更・データ保全には個別の確認が必要です。
 - このリポジトリはポートフォリオ提出用です。アプリ本体のコードは上記の別リポジトリで管理しています。
