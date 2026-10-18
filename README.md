@@ -12,15 +12,10 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 
 ※画像は以前の画面です。最新作業ブランチの画面・動作を示す証跡ではありません。
 
-## アプリURL
+## サイトURL
 
 - [公開アプリ（Production・旧版）](https://codestep-two.vercel.app)
 - [最新実装の作業ブランチ](https://github.com/bonbabo108/codestep/tree/codex/admin-rls-portfolio)（最新の非本番版。一般公開用URLではありません）
-
-## アプリ本体GitHub
-
-- [CodeStepアプリ本体](https://github.com/bonbabo108/codestep)
-- [最新検証・公開準備記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/release-readiness.md)
 
 ## 使用技術
 
@@ -31,6 +26,16 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 - テスト・デバッグ：Chrome DevTools（Consoleの確認）、単体・モック・staging実DB/APIでの検証
 
 - CI：GitHub Actions（ESLint自動実行） — [成功したワークフローの実行履歴](https://github.com/bonbabo108/codestep/actions/runs/39031564825)（作業ブランチ `codex/admin-rls-portfolio`、コミット `d950f3f`）
+
+## 設計ドキュメント
+
+- [Week9 要件定義・設計スプレッドシート](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
+- [ワイヤーフレーム](./docs/wireframe.png)
+- [ER図](./docs/er-diagram.png)
+
+※設計原本には旧仕様が含まれます。最新の認証・権限・削除方法と完全一致するとは限りません。
+
+設計画像は [docsフォルダ](./docs) に格納しています。
 
 ## 機能一覧
 
@@ -44,28 +49,29 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 
 ※各機能の検証範囲と未検証項目は、[アプリ本体のテスト記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/test-plan.md)を参照してください。
 
-## 設計ドキュメント
-
-- [Week9 要件定義・設計スプレッドシート](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
-- [ワイヤーフレーム](./docs/wireframe.png)
-- [ER図](./docs/er-diagram.png)
-
-※設計原本には旧仕様が含まれます。最新の認証・権限・削除方法と完全一致するとは限りません。
-
-## テスト・修正の設計及び実施書（Week11）
+## テスト・修正の設計及び実施書
 
 - [Week11 テスト設計＆実施書](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit)
 - [最新作業ブランチのテスト記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/test-plan.md)
 
 Week11シートにはv0プレビュー段階の確認結果と「未検証」の項目が残っています。別途実施したstaging実DB/API・認証・画面の検証結果を、同じ条件で実施したものと誤認しないよう区別しています。
 
-## アプリ改善案（Week12）
+## アプリの改善案
 
 - [提出済みのWeek12改善案シート](https://docs.google.com/spreadsheets/d/1flOiRudAh9wCJgjQoD1CQQVqrHq9n_bBH-agpPvHmLQ/edit)
 
 今後の改善構想として、AI利用時の情報漏洩・危険操作を学ぶ問題、段階的なヒント、問題・カテゴリ選択、達成率表示、AI作業前の簡易リスク確認チェックリストを挙げています。**これら5件は提案段階で、まだ実装していません。**
 
-## 生成AIツールの活用用途
+## プログラム格納場所
+
+アプリ本体は別リポジトリで管理しています。
+
+- [CodeStep：プログラム格納場所](./CodeStep/プログラム格納場所.md)
+- [CodeStepアプリ本体のソースコード](https://github.com/bonbabo108/codestep)
+
+## 備考
+
+### 活用した生成AIとその用途
 
 - ChatGPT：要件・提出条件の整理、仕様の検討、READMEや課題資料の作成補助
 - v0：初期プロトタイプと画面構成の作成・確認
@@ -74,9 +80,12 @@ Week11シートにはv0プレビュー段階の確認結果と「未検証」の
 
 生成AIの出力をそのまま動作保証とはみなさず、検証内容と未検証項目を分けて記録しています。
 
-## 備考・今後の課題
+### 検証・提出・公開の状況
 
 - Week12の「DevToolsの確認」は、アプリとDevToolsの画面を含むスクリーンショットをWorX AIへ提出済みです。
 - GitHub Actions（ESLint）は作業ブランチで実行・成功を確認済みです：[実行履歴](https://github.com/bonbabo108/codestep/actions/runs/39031564825)。WorX AIへの課題は、初回の証拠画像不足を修正して再提出済みです（再採点結果は未確認）。
 - Productionへの最新機能反映、本番DB/Auth移行は未実施です。本番DBの権限変更・データ保全には個別の確認が必要です。
 - このリポジトリはポートフォリオ提出用です。アプリ本体のコードは上記の別リポジトリで管理しています。
+
+- [最新検証・公開準備記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/release-readiness.md)
+- アプリの説明と提出資料への入口は、このリポジトリのREADMEに集約しています。
