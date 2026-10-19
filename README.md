@@ -2,9 +2,9 @@
 
 **最終仕上げの状態（2026-10-19）：** [アプリのPR #3](https://github.com/bonbabo108/codestep/pull/3)に認証修正・安全な体験デモ・管理CRUDと本人進捗・最終設計・CIをまとめています。Productionには未反映です。
 
-[登録不要の体験デモ（非本番Preview）](https://codestep-git-codex-admin-rls-portfolio-touya1896-7818s-projects.vercel.app/demo) · [評価項目と証拠](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/evaluation-evidence.md) · [最終設計・ER図](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/final-design.md)
+[管理画面デモ（登録・ログイン不要）](https://codestep-git-codex-admin-rls-portfolio-touya1896-7818s-projects.vercel.app/demo/admin) · [学習体験デモ（非本番Preview）](https://codestep-git-codex-admin-rls-portfolio-touya1896-7818s-projects.vercel.app/demo) · [評価項目と証拠](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/evaluation-evidence.md) · [最終設計・ER図](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/final-design.md)
 
-PreviewにはVercelの閲覧認証が必要な場合があります。体験デモは架空データのみを使い、画面を閉じると変更が消えます。実Auth・DB保存・RLSの証明とは区別しています。
+上記の固定stagingドメイン1件はVercelアカウント不要です。他のPreviewの保護は維持しています。体験デモは架空データのみを使い、画面を閉じると変更が消えます。実Auth・DB保存・RLSの証明とは区別しています。
 
 ## アプリ概要
 
@@ -31,7 +31,7 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 - バージョン管理：Git、GitHub
 - テスト・デバッグ：Chrome DevTools（Consoleの確認）、単体・モック・staging実DB/APIでの検証
 
-- CI：GitHub ActionsでESLint・TypeScript・62件のテスト・ダミー接続ビルドを自動実行。[成功したpushワークフロー](https://github.com/bonbabo108/codestep/actions/runs/39192624505)（コミット `53a5d43`）。PRの最新CIは[PR #3](https://github.com/bonbabo108/codestep/pull/3)を参照。
+- CI：GitHub ActionsでESLint・TypeScript・70件のテスト・ダミー接続ビルドを自動実行。最新結果は[アプリPR #3](https://github.com/bonbabo108/codestep/pull/3)を参照してください。
 - CD：作業ブランチのpushでVercel Previewを自動更新。main更新でProductionへ連携するため、本番条件が揃うまでアプリのマージを保留しています。
 
 ## 設計ドキュメント
@@ -61,8 +61,8 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 
 ## 体験・使い方
 
-1. 上の体験デモを開き、回答を入力して「回答する」→解説と正解を確認します。
-2. 「問題管理を体験」で問題作成・編集・削除を試します。削除前に取消も選べます。「最初に戻す」で初期化できます。
+1. 上の「管理画面デモ」を開くと、1クリックで問題の追加・一覧・編集・削除を体験できます。削除前の取消と「最初に戻す」も使えます。
+2. 「学習を体験」へ切り替え、回答を入力して「回答する」→解説と正解を確認します。
 3. 通常の学習画面では、ゲストは回答のみ、ログイン後は本人の正解進捗を保存・復元します。管理者は専用入口から問題を管理します。
 
 判定は前後空白を除いた大小文字を区別する文字列一致です。入力コードは実行しません。共通管理者パスワードは公開しません。
@@ -74,10 +74,10 @@ CodeStepは、プログラミング初学者が短いコーディング問題に
 | メール確認の戻り先指定・期限切れ案内・再送 | スマートフォンでlocalhostへ戻る不具合を調査。両SupabaseのURL設定不備を読取で確認し、コード側を修正。stagingはURL設定を承認・反映済み。実メール確認は本人確認待ち |
 | 0件を成功扱いしない・二重操作を防ぐ | CRUD/本人保存で返却ID・行数を確認。通信不明時の無条件再送を避ける |
 | 本人進捗・競合処理・管理者RLS | 他人の進捗参照/更新と一般ユーザーの問題変更を防ぐ。stagingの実検証結果を再利用 |
-| 架空データの体験デモ | メンターが登録や実管理権限なしで学習・問題管理を確認できる。実Chromeで正誤/CRUD/取消/確定/初期化、390pxの横溢れなしを確認 |
+| ワンクリック管理デモ | メンターが登録や実管理権限なしで学習・問題管理を確認できる。PC/390pxで入力保持/連打1件/CRUD/取消/確定/空/初期化/再読込、横溢れなしを確認。直接デモの検証中はAuth/DB要求0件 |
 | 共通フォーム・ロジック・表示枠の整理 | ログインを共通化し、通常画面のAuthとデモを分離。判定・入力検証は再利用 |
 
-今回のローカル検証は `npm test` 62件、`npm run lint`、`npm run typecheck`、ダミーSupabase接続のWebpackビルドが成功。架空APIのブラウザ試験と既存staging実DB試験を区別しています。
+今回のローカル検証は `npm test` 70件、`npm run lint`、`npm run typecheck`、ダミーSupabase接続のWebpackビルドが成功。架空APIのブラウザ試験と既存staging実DB試験を区別しています。
 
 [実装と起動・検証手順](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/implementation-guide.md) / [改善の判断履歴](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/decisions.md)
 
@@ -128,3 +128,8 @@ Week11シートにはv0プレビュー段階の確認結果と「未検証」の
 
 - [最新検証・公開準備記録](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/release-readiness.md)
 - アプリの説明と提出資料への入口は、このリポジトリのREADMEに集約しています。
+
+
+管理デモはサンプルを画面のメモリだけで操作し、本物の管理者権限を渡しません。再読み込みで元に戻ります。[PC画面](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/screenshots/final-20261019/admin-demo-desktop.jpg) / [390px画面](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/docs/screenshots/final-20261019/admin-demo-mobile.jpg)。実メール認証の修正は反映済みですが、今回の新規アカウントによるAndroid/PC確認は未完了です。
+
+AI共同開発の判断基準は[AI_WORKFLOW](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/AI_WORKFLOW.md)、再開状況は[HANDOFF](https://github.com/bonbabo108/codestep/blob/codex/admin-rls-portfolio/HANDOFF.md)に整理しています。確認メールの日本語化・差出人ブランド化は低優先の改善候補です。
