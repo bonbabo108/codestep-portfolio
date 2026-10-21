@@ -38,7 +38,12 @@ https://github.com/bonbabo108/codestep
 
 ## 設計ドキュメント
 
-- [Week 9：要件定義・設計書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
+[Week 9：要件定義・設計書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
+
+設計資料の図は、次のリンクから確認できます。
+
+- [ER図](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/er-diagram.png)
+- [ワークフロー図（画面遷移図）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/workflow.md)
 
 ## 機能一覧
 
