@@ -42,7 +42,8 @@ https://github.com/bonbabo108/codestep
 
 設計資料の図は、次のリンクから確認できます。
 
-- [ER図](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/er-diagram.png)
+- [ER図（現行DB構成）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/er-diagram-current.svg)
+- [ワイヤーフレーム（現行画面構成）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/wireframe-current.svg)
 - [ワークフロー図（画面遷移図）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/workflow.md)
 
 ## 機能一覧
