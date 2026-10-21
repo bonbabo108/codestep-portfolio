@@ -1,130 +1,113 @@
 # CodeStep ポートフォリオ
 
-**公開状況（2026-10-21）：** [アプリのPR #3](https://github.com/bonbabo108/codestep/pull/3)をmainへマージし、Vercel Productionのデプロイ成功を確認しました。本番の管理者権限・管理RLS・問題削除RPCも適用済みです。管理者として再ログインし管理画面を表示できたことは本人が確認済みです。学習進捗の実端末での保存・別端末復元は引き続き確認中です。
+**公開・動作確認状況（2026年10月21日更新）**
 
-[登録不要の体験デモ（本番）](https://codestep-two.vercel.app/demo) · [評価項目と証拠](https://github.com/bonbabo108/codestep/blob/main/docs/evaluation-evidence.md) · [最終設計・ER図](https://github.com/bonbabo108/codestep/blob/main/docs/final-design.md)
+CodeStepは、プログラミング初学者が短いコード問題を解き、正誤判定と解説で学ぶWebアプリです。講座の最終課題として制作しました。
 
-体験デモは架空データのみを使い、画面を閉じると変更が消えます。実Auth・DB保存・RLSの証明とは区別しています。
+[アプリ本体のPR #3](https://github.com/bonbabo108/codestep/pull/3)を`main`へマージし、VercelのProductionへ反映済みです。**本番の新規登録・ログイン、正解した問題の進捗保存、同一アカウントでのPC・Android間の復元、管理者による問題作成・編集・削除は、2026年10月21日に制作者本人が実機で検証済みと報告しました。** これらは本人の確認結果であり、README改訂時にAIが本番操作やDBログを独立に再検証した結果ではありません。
 
-## アプリ概要
+**[本番アプリを開く](https://codestep-two.vercel.app)** ・ **[登録不要の学習・管理デモ](https://codestep-two.vercel.app/demo)** ・ **[アプリ本体のGitHub](https://github.com/bonbabo108/codestep)**
 
-CodeStepは、プログラミング初学者が短いコーディング問題に回答し、正誤判定と解説を通して学べるWebアプリです。学習者の正解・進捗を保存・復元する仕組みや、管理者による問題管理機能を備えています。
+## アプリ概要と対象者
 
-**公開状況について：** 最新機能はmainへのマージ後、Vercel Productionへ反映されました。本番DBの管理RLS・問題削除RPC・本人進捗の権限と一意制約は適用済みです。実ブラウザでの管理画面表示は本人確認済み。進捗の本番保存・別端末復元、および管理CRUDの一連操作は実機検証完了まで未確認として扱います。
+仕事や日常生活と両立しながらプログラミングを学ぶ初学者を想定しています。教材を探し回る負担を減らし、問題を1問ずつ解き、その場で答えと説明を確認できることを重視しました。この対象者像は設計上の仮説であり、調査による実測結果ではありません。
 
 ## サイトイメージ
 
-![登録不要の体験デモ（2026-10-19ローカル実画面）](https://raw.githubusercontent.com/bonbabo108/codestep/53a5d4360e7c7c22a98997a9fc6d083818b7397c/docs/screenshots/final-20261019/demo-desktop.jpg)
+![登録不要の体験デモ（2026年10月19日、ローカル実画面）](https://raw.githubusercontent.com/bonbabo108/codestep/53a5d4360e7c7c22a98997a9fc6d083818b7397c/docs/screenshots/final-20261019/demo-desktop.jpg)
 
-[スマートフォン幅の画面](https://raw.githubusercontent.com/bonbabo108/codestep/53a5d4360e7c7c22a98997a9fc6d083818b7397c/docs/screenshots/final-20261019/demo-mobile.jpg) / [以前の学習画面原本](./docs/app-learning.png)。画像は実メール認証や本番CRUDの成功証跡ではありません。
+[スマートフォン幅の画面](https://raw.githubusercontent.com/bonbabo108/codestep/53a5d4360e7c7c22a98997a9fc6d083818b7397c/docs/screenshots/final-20261019/demo-mobile.jpg) / [制作途中の学習画面原本](./docs/app-learning.png)
 
-## サイトURL
+※画像は撮影時点の表示例です。本番の認証・DB保存を証明する画像ではありません。
 
-- [公開アプリ（Production）](https://codestep-two.vercel.app)
-- [本番アプリのソースコード（main）](https://github.com/bonbabo108/codestep/tree/main)
+## サイトURL・コード
 
-## 使用技術
+- **本番アプリ：** https://codestep-two.vercel.app
+- **登録不要デモ：** https://codestep-two.vercel.app/demo
+- **アプリ本体リポジトリ：** https://github.com/bonbabo108/codestep
+- **PRとマージ履歴：** https://github.com/bonbabo108/codestep/pull/3
 
-- フロントエンド：Next.js（App Router）、React、TypeScript、Tailwind CSS
-- 認証・データベース：Supabase Auth、PostgreSQL、RLS
-- デプロイ：Vercel
-- バージョン管理：Git、GitHub
-- テスト・デバッグ：Chrome DevTools（Consoleの確認）、単体・モック・staging実DB/APIでの検証
+## 主な機能と確認状況
 
-- CI：GitHub ActionsでESLint・TypeScript・77件のテスト・ダミー接続ビルドを自動実行。[マージ済みPR #3](https://github.com/bonbabo108/codestep/pull/3)の品質チェック成功を確認。実DBと実端末の検証は自動テストと区別します。
-- CD：作業ブランチのpushでVercel Previewを自動更新。PR #3をmainへマージ後、GitHub連携でVercel Productionのデプロイ成功を確認しました。
-
-## 設計ドキュメント
-
-- [Week9 要件定義・設計スプレッドシート](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
-- [ワイヤーフレーム](./docs/wireframe.png)
-- [ER図](./docs/er-diagram.png)
-
-- [最終設計：目的・構成・機能一覧・画面遷移・全16列のER図](https://github.com/bonbabo108/codestep/blob/main/docs/final-design.md)
-- [評価基準と証拠の対応表](https://github.com/bonbabo108/codestep/blob/main/docs/evaluation-evidence.md)
-
-設計画像の原本は保持しています。NULL可否、FKのNO ACTION、進捗一意制約（staging・本番適用済み）、管理者認可、関連進捗を含む削除など、現実装との差分は最終設計を優先してください。外部シートは未編集です。
-
-設計画像は [docsフォルダ](./docs) に格納しています。
-
-## 機能一覧
-
-**本番公開した主な機能（自動・staging検証と本番実機検証は区別）**
-
-- ユーザー登録・ログイン・ログアウト（Supabase Auth）
-- データベースからの学習問題表示、解答入力、正誤判定、解説表示
-- ログインした本人の正解・学習進捗の保存と復元
-- 管理者専用ログイン入口・管理画面、一般ユーザーの管理操作制限
-- 管理者による問題作成・一覧表示・編集・削除（関連する進捗がある問題の削除を含む）
-
-※各機能の検証範囲と未検証項目は、[アプリ本体のテスト記録](https://github.com/bonbabo108/codestep/blob/main/docs/test-plan.md)を参照してください。
-
-## 体験・使い方
-
-1. 上の体験デモを開き、回答を入力して「回答する」→解説と正解を確認します。
-2. 「問題管理を体験」で問題作成・編集・削除を試します。削除前に取消も選べます。「最初に戻す」で初期化できます。
-3. 通常の学習画面では、ゲストは回答のみ、ログイン後は本人の正解進捗を保存・復元します。管理者は専用入口から問題を管理します。
-
-判定は前後空白を除いた大小文字を区別する文字列一致です。入力コードは実行しません。共通管理者パスワードは公開しません。
-
-## 改善と検証
-
-| 改善 | 理由と確認 |
+| 機能 | できること・検証 |
 | --- | --- |
-| メール確認の戻り先指定・期限切れ案内・再送 | スマートフォンでlocalhostへ戻る不具合を調査。両SupabaseのURL設定不備を読取で確認し、コード側を修正。実メール確認は設定承認後に実施 |
-| 0件を成功扱いしない・二重操作を防ぐ | CRUD/本人保存で返却ID・行数を確認。通信不明時の無条件再送を避ける |
-| 本人進捗・競合処理・管理者RLS | 他人の進捗参照/更新と一般ユーザーの問題変更を防ぐ。stagingの実検証結果を再利用 |
-| 架空データの体験デモ | メンターが登録や実管理権限なしで学習・問題管理を確認できる。実Chromeで正誤/CRUD/取消/確定/初期化、390pxの横溢れなしを確認 |
-| 共通フォーム・ロジック・表示枠の整理 | ログインを共通化し、通常画面のAuthとデモを分離。判定・入力検証は再利用 |
+| 新規登録・ログイン・ログアウト | Supabase Authによるメールアドレス・パスワード認証。新規登録・ログインは本番で本人が確認済み |
+| 学習と解答 | DBの問題を読み込み、コードを入力して正誤判定・解説を確認 |
+| 学習進捗の保存と復元 | ログインした本人の正解済み進捗を保存。同一アカウントでPC・Android間の復元を本人が本番確認済み |
+| 管理者による問題CRUD | 管理者が問題の作成・一覧・編集・削除を実施。本番の一連操作を本人が確認済み |
+| 権限・データ保護 | 管理者フラグ、RLS、列権限、削除用RPC、本人進捗の一意制約を利用。設定適用は既存の本番記録で確認 |
+| 登録不要のデモ | 架空の問題で学習・問題管理を体験。ブラウザ内メモリだけを使い、実際のAuth・DBには書き込まない |
 
-作業ブランチで `npm test` 77件、`npm run lint`、`npm run typecheck`、ダミーSupabase接続のWebpackビルドが成功。GitHub Actionsでの品質チェック成功も確認しています。架空APIのブラウザ試験・staging実DB試験・本番実端末試験を区別しています。
+**検証の区別：** 自動テスト・検証用DB（staging）の実測・本人の本番実機確認はそれぞれ異なる種類の証拠です。本番の主要操作の最新判定は[Week11「現行検証_20261021」タブ](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit#gid=648476743)を参照してください。
 
-[実装と起動・検証手順](https://github.com/bonbabo108/codestep/blob/main/docs/implementation-guide.md) / [改善の判断履歴](https://github.com/bonbabo108/codestep/blob/main/docs/decisions.md)
+## 使い方（メンタリングでの実演）
 
-## テスト・修正の設計及び実施書
+1. [登録不要デモ](https://codestep-two.vercel.app/demo)で回答・正誤判定・解説を確認します。
+2. デモの「問題管理を体験」から、サンプル問題の追加・編集・削除、削除取消、初期化を試せます。デモは実DBを更新しません。
+3. [本番アプリ](https://codestep-two.vercel.app)で通常の学習・ログイン・本人進捗の保存を確認できます。
+4. 管理者による実問題管理は、権限を持つ本人が[管理者入口](https://codestep-two.vercel.app/admin/login)からログインして操作します。管理者パスワードや管理者権限を第三者へ配布しません。
 
-- [Week11 テスト設計＆実施書](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit)
-- [最新作業ブランチのテスト記録](https://github.com/bonbabo108/codestep/blob/main/docs/test-plan.md)
+**解答判定の仕様：** 入力の前後空白を除いた文字列一致（大文字・小文字は区別）です。コード自体の実行、あらゆる別解の判定は行いません。
 
-Week11シートにはv0プレビュー段階の確認結果と「未検証」の項目が残っています。別途実施したstaging実DB/API・認証・画面の検証結果を、同じ条件で実施したものと誤認しないよう区別しています。
+## 使用技術・構成
 
-## アプリの改善案
+- **フロントエンド：** Next.js（App Router）、React、TypeScript、Tailwind CSS
+- **認証・データベース：** Supabase Auth、PostgreSQL、Row Level Security（RLS）
+- **問題・進捗：** publicの`questions`、`profiles`、`user_progress`の3テーブル。利用者認証はSupabase Auth側で管理し、独自のパスワード保存テーブルを作成していません。
+- **デプロイ：** Vercel（GitHub連携）
+- **ソース管理：** Git、GitHub、ブランチ、Pull Request
+- **テスト・デバッグ：** Chrome DevTools、モック・staging実DB/API・本人実機での確認
+- **CI：** GitHub ActionsでESLint、型検査、77件の自動テスト、ダミー接続ビルドを実施し成功を確認。CI成功を実DB試験の代わりとは扱いません。
+- **CD：** ブランチpushでPreviewを更新し、[PR #3](https://github.com/bonbabo108/codestep/pull/3)のmainマージ後にVercel Productionへ反映しています。
 
-- [提出済みのWeek12改善案シート](https://docs.google.com/spreadsheets/d/1flOiRudAh9wCJgjQoD1CQQVqrHq9n_bBH-agpPvHmLQ/edit)
+## 要件定義・設計資料（Week 9）
 
-今後の改善構想として、AI利用時の情報漏洩・危険操作を学ぶ問題、段階的なヒント、問題・カテゴリ選択、達成率表示、AI作業前の簡易リスク確認チェックリストを挙げています。**これら5件は提案段階で、まだ実装していません。**
+- [Week9 要件定義・設計シート](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
+- **[現行設計との差分・2026年10月21日更新](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit#gid=1446831800)**
+- [ワイヤーフレーム原本](./docs/wireframe.png) / [ER図の画像原本](./docs/er-diagram.png)
+- [詳細設計・現在の構成を説明する文書](https://github.com/bonbabo108/codestep/blob/main/docs/final-design.md)
 
-## プログラム格納場所
+**資料の読み方：** 制作初期のシート・図・GitHub文書は当時の設計や変更履歴も残しています。現行の3テーブル構成、管理画面URL、Authによる認証、本人進捗、管理者権限・削除RPCは、上記「現行設計との差分」と本READMEの更新日を優先して参照してください。Googleスプレッドシートは2026年10月21日に更新済みです。
 
-アプリ本体は別リポジトリで管理しています。
+## テスト・修正・検証資料（Week 11）
 
-- [CodeStep：プログラム格納場所](./CodeStep/プログラム格納場所.md)
-- [CodeStepアプリ本体のソースコード](https://github.com/bonbabo108/codestep)
+- [Week11 テスト設計＆実施シート](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit)
+- **[最新の合格・検証記録（現行検証_20261021）](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit#gid=648476743)**
+- [開発中の自動・staging検証履歴](https://github.com/bonbabo108/codestep/blob/main/docs/test-plan.md)
+- [GitHub Actions実行記録](https://github.com/bonbabo108/codestep/actions/runs/39031564825) / [PR #3の品質確認とマージ](https://github.com/bonbabo108/codestep/pull/3)
 
-## 残る公開条件・制約
+旧v0プレビューの試験記録は制作経過として保持し、現在の主要な本番操作は本人の検証完了を受けて合格に更新しました。自動・staging・本番の検証条件は混同しません。
 
-- 本番SupabaseのSite URLとログイン戻り先は公開URLへ設定済みです。メール・パスワードで新規登録できますが、確認メールの本人検証は今回の提出では必須にせず、今後の改善点としました（Confirm email OFF、独自SMTPなし）。
-- 本番の管理者RLS・削除RPC・進捗ACL/一意制約・既存本人アカウントへの管理者指定は適用済みで、アプリのPR #3はmainへマージ済みです。管理者としての再ログインと管理画面表示は本人確認済み。実管理CRUDと別端末での学習進捗復元は未確認です。
-- OAuth、独立した外部サービス/生成AI API、画像・音声入力は未実装です。評価表の最高点の全条件を達成したとは説明しません。
-- 緊急停止・復旧試験は一部未検証のまま終了し、今回は追加実施していません。
+## 改善と今後の案（Week 12）
 
-## 備考
+- [Week12 プログラムの改善シート](https://docs.google.com/spreadsheets/d/1flOiRudAh9wCJgjQoD1CQQVqrHq9n_bBH-agpPvHmLQ/edit)
+- **[実施した改善と将来案（改善履歴_20261021）](https://docs.google.com/spreadsheets/d/1flOiRudAh9wCJgjQoD1CQQVqrHq9n_bBH-agpPvHmLQ/edit#gid=705317382)**
 
-### 活用した生成AIとその用途
+| 実施済みの改善 | 狙い・確認内容 |
+| --- | --- |
+| 問題管理UIとデモの共通化 | 通常管理と体験デモで画面・確認操作を共通化。データの保存先は実DBとメモリに分離 |
+| 認証画面の入力・案内 | ダーク系配色での入力視認性、パスワード表示、戻り先・期限切れ案内などを改善 |
+| 保存・更新・削除処理 | 0件返却を成功扱いしない、重複送信防止、削除前の確認、異常時の案内 |
+| 進捗と権限制御 | 本人進捗・RLS・管理者用の権限を整備し、stagingと本番の記録を分離 |
+| スマホ向け確認 | PC/390px幅の画面・デモを確認し、本人のAndroidからの操作感も確認 |
 
-- ChatGPT：要件・提出条件の整理、仕様の検討、READMEや課題資料の作成補助
-- v0：初期プロトタイプと画面構成の作成・確認
-- Codex：実装・SQLレビュー、修正案の作成、テスト・安全性検証、既存設計との照合
-- Cline、GitHub Copilot等：過去の開発・ドキュメント作業での補助（実際の使用範囲に基づき必要に応じて見直す）
+**提出後の改善候補（未実装）：** AIの危険操作を学ぶ問題、ヒントの段階表示、カテゴリ選択、達成率表示、AI作業前のチェックリスト。提案段階の機能を実装済みとは表示しません。
 
-生成AIの出力をそのまま動作保証とはみなさず、検証内容と未検証項目を分けて記録しています。
+## 制約・未実装・今後の検討
 
-### 検証・提出・公開の状況
+- 新規登録・ログインは動作する構成ですが、**本番は`Confirm email OFF`、独自SMTPなし**です。メールアドレスを入力した人がその所有者かどうかの確認は行わず、改善候補として明記しています。
+- OAuth、独立した生成AI API、ライブコード実行、画像・音声入力は今回の提出対象外です。採点表の最高評価をすべて満たしたという意味ではありません。
+- 緊急停止・復旧の一部の異常系試験は未完了です。過去の本番DB移行・安全検証記録と、主要機能の本番実機確認は別項目として扱います。
+- [本番移行・公開までの判断履歴（過去時点の未適用・未公開記載を含む）](https://github.com/bonbabo108/codestep/blob/main/docs/release-readiness.md)は時系列の履歴です。過去の「未公開」「未適用」を2026年10月21日時点の現在地として読まないでください。
 
-- Week12の「DevToolsの確認」は、アプリとDevToolsの画面を含むスクリーンショットをWorX AIへ提出済みです。
-- GitHub Actions（ESLint）は作業ブランチで実行・成功を確認済みです：[実行履歴](https://github.com/bonbabo108/codestep/actions/runs/39031564825)。WorX AIへの課題は、初回の証拠画像不足を修正して再提出済みです（再採点結果は未確認）。
-- Productionへの最新機能反映、本番DBの管理者限定RLS/削除RPC・進捗権限/一意制約、本人の管理者指定は完了。管理者画面の表示は本人が実機確認済み。正解済み問題の本番保存・Androidでの復元・実管理CRUDの実機検証結果はまだ記録していません。
-- このリポジトリはポートフォリオ提出用です。アプリ本体のコードは上記の別リポジトリで管理しています。
+## 生成AIの利用・提出補足
 
-- [最新検証・公開準備記録](https://github.com/bonbabo108/codestep/blob/main/docs/release-readiness.md)
-- アプリの説明と提出資料への入口は、このリポジトリのREADMEに集約しています。
+- **ChatGPT：** 要件・設計・提出条件の整理、資料作成とレビューの補助。
+- **v0：** 初期UIプロトタイプの検討・画面確認。
+- **Codex：** アプリの実装、修正案・SQLレビュー、テスト、安全性と設計の照合。
+
+生成AIの作業結果と、制作者本人が本番で確認した結果を区別しています。
+
+Week12のChrome DevTools課題は、アプリ画面とDevToolsのスクリーンショットをWorX AIへ提出済みです。GitHub Actions（ESLint）の課題は証拠画像の不足を修正して再提出済みですが、再採点結果は未確認です。
+
+アプリ本体は別リポジトリ（[CodeStep](https://github.com/bonbabo108/codestep)）で管理しています。[プログラム格納場所の説明](./CodeStep/プログラム格納場所.md)も参照できます。このリポジトリのREADMEをメンターへの提出・共有の入口としています。
