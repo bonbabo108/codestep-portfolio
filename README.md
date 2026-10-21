@@ -39,9 +39,6 @@ https://github.com/bonbabo108/codestep
 ## 設計ドキュメント
 
 - [Week 9：要件定義・設計書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1l6_wH24I4Cq1jhvHi1VtDjarj5fr8KK6jS0g7HTAtds/edit)
-- [ワイヤーフレーム（GitHub画像）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/wireframe.png)
-- [ER図（GitHub画像）](https://github.com/bonbabo108/codestep-portfolio/blob/main/docs/er-diagram.png)
-- [現行設計・機能構成の詳細](https://github.com/bonbabo108/codestep/blob/main/docs/final-design.md)
 
 ## 機能一覧
 
