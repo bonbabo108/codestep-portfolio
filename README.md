@@ -49,20 +49,20 @@ https://github.com/bonbabo108/codestep
 ## 機能一覧
 
 - メールアドレスとパスワードによるユーザー登録・ログイン
-- 学習問題の表示、コード入力、正誤判定、解説表示
+- 学習問題の表示・選択、コード入力、正誤判定、解説表示
 - 正解した問題の学習進捗の保存・復元
 - 同一アカウントによるPC・スマートフォン間の進捗同期
 - 管理者による問題の作成・閲覧・編集・削除（CRUD）
 - 登録不要で学習機能と問題管理を試せる体験デモ
 
-体験デモではサンプルデータを使用し、実際のデータベースは変更しません。
+体験デモではサンプルデータを使用し、実際のデータベースは変更しません。体験デモ・管理画面デモから通常の学習画面や管理者ログイン画面へ移動できます。
 
 ## テスト・修正の設計及び実施書
 
 - [Week 11：テスト設計・実施書（Googleスプレッドシート）](https://docs.google.com/spreadsheets/d/1E865kqwo83lWGgH0s1bbIIAs0FKfpGfzHbQTKxKiDqQ/edit)
 - [自動テスト・開発中の検証記録（GitHub）](https://github.com/bonbabo108/codestep/blob/main/docs/test-plan.md)
 
-自動テスト77件が成功しています。また、ユーザー登録・ログイン、学習進捗の保存・端末間復元、管理者による問題管理など、主要機能の本番動作を確認済みです。
+自動テスト82件が成功しています（2026-10-22のGitHub Actions）。また、ユーザー登録・ログイン、学習進捗の保存・端末間復元、管理者による問題管理など、主要機能の本番動作を確認済みです。
 
 最新の検証結果はWeek 11の「現行検証_20261021」タブに記録しています。
 
@@ -83,7 +83,7 @@ https://github.com/bonbabo108/codestep
 **GitHub Actions**
 
 - ESLint、TypeScriptの型チェック、自動テストなどを実施
-- [GitHub Actionsの実行結果](https://github.com/bonbabo108/codestep/actions/runs/39031564825)
+- [GitHub Actionsの実行結果](https://github.com/bonbabo108/codestep/actions/runs/39762347481)
 
 **活用した生成AIと用途**
 
