@@ -13,6 +13,9 @@
 <path d="M 895 455 V 580" fill="none" stroke="#718195" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="910" y="514" font-size="17" font-weight="400" text-anchor="start" fill="#223044">デモを開く</text>
 <path d="M 1110 672 L 1305 672" fill="none" stroke="#718195" stroke-width="3" marker-end="url(#arrow)"/>
-<text x="1208" y="652" font-size="16" font-weight="600" text-anchor="middle" fill="#223044">デモ内で移動</text>
-<text x="50" y="802" font-size="17" font-weight="400" text-anchor="start" fill="#223044">※ 入力途中のリアルタイムプレビューは未実装。現行はコード入力後の正誤判定・解説表示。</text>
+<text x="1208" y="652" font-size="16" font-weight="600" text-anchor="middle" fill="#223044">デモ管理へ</text>
+<path d="M 1305 722 L 1110 722" fill="none" stroke="#718195" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="1208" y="750" font-size="16" font-weight="600" text-anchor="middle" fill="#223044">学習デモへ戻る</text>
+<text x="50" y="802" font-size="17" font-weight="400" text-anchor="start" fill="#223044">※ 入力途中のリアルタイムプレビューは未実装。現行は解答後に正誤判定・解説を表示します。</text>
+<text x="50" y="830" font-size="15" font-weight="400" text-anchor="start" fill="#345b94">※ PR #5のPreviewでは、デモから通常学習「/」と管理者入口「/admin/login」にクリックで戻る導線を追加（本番未反映）。</text>
 </svg>
